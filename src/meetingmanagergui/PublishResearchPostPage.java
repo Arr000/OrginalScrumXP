@@ -5,18 +5,39 @@
  */
 package meetingmanagergui;
 
+import BloggManager.BloggService;
+import DB.EmployeeDB;
+import DB.PostDB;
+import Models.Employee;
+import Models.ForskningsInlagg;
+import Models.IEmployee;
+import Models.IPost;
+import javax.swing.JOptionPane;
+import org.firebirdsql.jdbc.FBEscapedFunctionHelper;
+
 /**
  *
  * @author nene5
  */
 public class PublishResearchPostPage extends javax.swing.JFrame {
 
+    private Employee employee;
+    private IEmployee _employeService = new BloggService(new EmployeeDB());
+    private IPost _postService = new BloggService(new PostDB());
+   
     /**
      * Creates new form InformalPostPage
      */
     public PublishResearchPostPage() {
         initComponents();
     }
+     
+     public PublishResearchPostPage(Employee e) {
+        initComponents();
+        this.employee = e;
+    }
+      
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +68,11 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
         jLabel2.setText("Rubrik");
 
         btnSend.setText("Skicka");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +110,20 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        
+        var maxid = _postService.getMaxIdResearchPost();
+        var rubrik = txtRubrik.getText();
+        var inlagg = txtPost.getText();
+        var username = employee.getUsername();
+        
+        _postService.addResearchPost(maxid, rubrik, inlagg, username);
+        
+        JOptionPane.showMessageDialog(null, "Ditt inlägg har publicerats");
+        this.dispose();
+        
+    }//GEN-LAST:event_btnSendActionPerformed
 
     /**
      * @param args the command line arguments

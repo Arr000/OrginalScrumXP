@@ -111,7 +111,7 @@ public class LoginPage extends javax.swing.JFrame {
             if(employee !=null)
             {
                 JOptionPane.showMessageDialog(null, "Inlogg lyckades!");
-                var newpage = new ManageMeetingGUI(employee);
+                var newpage = new StartPage(employee);
                 newpage.setVisible(true);
             }
             else
