@@ -10,6 +10,8 @@ import Models.IEmployee;
 import Models.IEmployeeDAL;
 import Models.IMeeting;
 import Models.IMeetingDal;
+import Models.IPost;
+import Models.IPostDal;
 import Models.Meeting;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -18,10 +20,11 @@ import javax.swing.JOptionPane;
  *
  * @author nene5
  */
-public class BloggService implements IMeeting, IEmployee{
+public class BloggService implements IMeeting, IEmployee, IPost{
  
     private IMeetingDal _meetingdb;
     private IEmployeeDAL _employeedb;
+    private IPostDal _postdb;
     
     public BloggService(IMeetingDal meetingdb)
     {
@@ -31,6 +34,12 @@ public class BloggService implements IMeeting, IEmployee{
     {
         this._employeedb = employedb;
     }
+    
+     public BloggService(IPostDal postdb)
+     {
+         this._postdb = postdb;
+     }
+     
 
     @Override
     public ArrayList<Meeting> getMyMeetings(int id) {
@@ -94,6 +103,20 @@ public class BloggService implements IMeeting, IEmployee{
              return null;
         }
     
+    }
+    
+    @Override
+    public void addResearchPost(int id, String rubrik, String inlagg, String username) {
+        
+        _postdb.saveResearchPost(id, rubrik, inlagg, username);
+        
+    }
+
+    @Override
+    public int getMaxIdResearchPost() {
+      var maxId = _postdb.getMaxIdResearchPost();
+      return maxId+1;
+      
     }
 
  
