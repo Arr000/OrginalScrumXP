@@ -129,26 +129,24 @@ public class EmployeeDB implements IEmployeeDAL{
           try {
               DatabasAcess.Connect();
               
-              var loginQuery = "SELECT * FROM EMPLOYEE WHERE ID = " + DatabasAcess.MakeDBString(userName) + "," + DatabasAcess.MakeDBString(password);
+              var loginQuery = "SELECT * FROM EMPLOYEE WHERE ANVANDARNAMN = " + DatabasAcess.MakeDBString(userName) + " AND LOSENORD = " + DatabasAcess.MakeDBString(password);
               var result = DatabasAcess.getidb().fetchRow(loginQuery);
               if(result != null)
               {
-                  var un = result.get("USERNAME");
-                  var psw = result.get("PASSWORD");
+                  var un = result.get("ANVANDARNAMN");
+                  var psw = result.get("LOSENORD");
                   var fn = result.get("FIRSTNAME");
                   var en = result.get("LASTNAME");
                   var id = Integer.parseInt(result.get("ID"));
                   var email = result.get("EMAIL");
                   
                   var employee = new Employee(id, fn, en, un, psw, email);
-                  
                   return employee;
-                  
               }
               else 
               {
                   JOptionPane.showMessageDialog(null, "Fel användarnamn eller lösenord");
-                  
+                  return null;
               }
               
           } catch (InfException ex) {

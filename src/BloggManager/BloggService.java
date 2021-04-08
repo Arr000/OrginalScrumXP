@@ -12,6 +12,7 @@ import Models.IMeeting;
 import Models.IMeetingDal;
 import Models.Meeting;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,9 +85,15 @@ public class BloggService implements IMeeting, IEmployee{
     @Override
     public Employee loginPage(String userName, String password) {
         var employee = _employeedb.checkLogin(userName, password);
-        return employee;
-        
-        
+        if(employee != null)
+        {
+            return employee;
+        }
+        else
+        {
+             return null;
+        }
+    
     }
 
  
