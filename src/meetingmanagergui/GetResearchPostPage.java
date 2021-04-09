@@ -5,17 +5,45 @@
  */
 package meetingmanagergui;
 
+import BloggManager.BloggService;
+import DB.PostDB;
+import Models.ForskningsInlagg;
+import Models.IPost;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nene5
  */
 public class GetResearchPostPage extends javax.swing.JFrame {
-
+   
+    public IPost _posts = new BloggService(new PostDB());
+    ArrayList<ForskningsInlagg> list = new ArrayList<>();
     /**
      * Creates new form GetResearchPostPage
      */
     public GetResearchPostPage() {
         initComponents();
+        fillMyTable();
+    }
+    
+    public void fillMyTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) tblForskningsInlagg.getModel();
+        
+        list = _posts.getAllResearchPosts();
+        Object rowData[] = new Object[2];
+        for(int i = 0; i < list.size(); i++)
+        {
+            rowData[0] = list.get(i).getRubrik();
+            rowData[1] = list.get(i).getUsername();
+            model.addRow(rowData);
+            
+        }
+        
+        
+        
     }
 
     /**
@@ -27,21 +55,91 @@ public class GetResearchPostPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblForskningsInlagg = new javax.swing.JTable();
+        lblRubrik = new javax.swing.JLabel();
+        lblInlagg = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        tblForskningsInlagg.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Rubrik", "Avsändare"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tblForskningsInlagg.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblForskningsInlaggMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblForskningsInlaggMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblForskningsInlagg);
+
+        lblRubrik.setText("Rubrik");
+
+        lblInlagg.setText("Inlagg");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRubrik)
+                    .addComponent(lblInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(lblRubrik)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblInlagg, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblForskningsInlaggMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblForskningsInlaggMouseClicked
+    
+        
+    }//GEN-LAST:event_tblForskningsInlaggMouseClicked
+
+    private void tblForskningsInlaggMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblForskningsInlaggMousePressed
+       
+    var getSelectedPost= tblForskningsInlagg.getSelectedRow();
+    var selectedpost = getSelectedPost;
+    var rubrik = list.get(selectedpost).getRubrik();
+    var inlagg = list.get(selectedpost).getInlagg();
+    
+    lblRubrik.setText(rubrik);
+    lblInlagg.setText(inlagg);
+    
+    
+    }//GEN-LAST:event_tblForskningsInlaggMousePressed
 
     /**
      * @param args the command line arguments
@@ -79,5 +177,9 @@ public class GetResearchPostPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblInlagg;
+    private javax.swing.JLabel lblRubrik;
+    private javax.swing.JTable tblForskningsInlagg;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,9 @@
  */
 package DB;
 
+import Models.ForskningsInlagg;
 import Models.IPostDal;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oru.inf.InfException;
@@ -47,5 +49,34 @@ public class PostDB implements IPostDal{
         }
         return 0;
     }
-    
+
+    @Override
+    public ArrayList<ForskningsInlagg> getAllResearchPosts() {
+        try {
+            DatabasAcess.Connect();
+            
+            var getAllResearchPostsQuery = "SELECT * FROM FORSKNINGSINLAGG";
+            var results = DatabasAcess.getidb().fetchRows(getAllResearchPostsQuery);
+            ArrayList<ForskningsInlagg> forskningsinlagglist = new ArrayList<>();
+            
+            if(results!= null)
+            {
+                for(var result: results)
+                {
+                    var id = Integer.parseInt(result.get("ID"));
+                    var rubrik = result.get("RUBRIK");
+                    var inlagg = result.get("INLAGG");
+                    var username = result.get("USERNAME");
+  
+                    var forskningsinlagg = new ForskningsInlagg(id, rubrik, inlagg, username);
+                  
+                    forskningsinlagglist.add(forskningsinlagg);
+                }
+                return forskningsinlagglist;
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(PostDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return null;
+    }   
 }

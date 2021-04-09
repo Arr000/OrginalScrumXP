@@ -6,6 +6,7 @@
 package BloggManager;
 
 import Models.Employee;
+import Models.ForskningsInlagg;
 import Models.IEmployee;
 import Models.IEmployeeDAL;
 import Models.IMeeting;
@@ -119,5 +120,10 @@ public class BloggService implements IMeeting, IEmployee, IPost{
       
     }
 
- 
+    @Override
+    public ArrayList<ForskningsInlagg> getAllResearchPosts() {
+        var allResearchPosts = _postdb.getAllResearchPosts();
+        return allResearchPosts;
+    }
+
 }

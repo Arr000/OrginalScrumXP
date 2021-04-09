@@ -5,6 +5,8 @@
  */
 package Models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author nene5
@@ -14,5 +16,8 @@ public interface IPost {
     public void addResearchPost(int id, String rubrik, String inlagg, String username);
     
     public int getMaxIdResearchPost();
+    
+    public ArrayList<ForskningsInlagg> getAllResearchPosts();
+    
     
 }
