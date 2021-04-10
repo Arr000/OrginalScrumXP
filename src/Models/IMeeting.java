@@ -22,5 +22,6 @@ public interface IMeeting {
     
     public void UpdateMeeting(int id, String approved);
     
+    public ArrayList<Meeting> getMeetingbyDate(String date);
     
 }

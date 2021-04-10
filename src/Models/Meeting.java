@@ -23,8 +23,7 @@ public class Meeting {
     
     
     
-    public Meeting()
-    {}
+
     
     public Meeting(int id, String plats, String tid, String datum, int receiverID, int senderID, String approved )
     {
@@ -81,6 +80,11 @@ public class Meeting {
       public int getReceiverID()
       {
           return this.receiverID;
+      }
+      
+      public String getAllInfo()
+      {
+          return "ID : " +id + "     Plats: " + plats + "     Tid: " + tid + "   EmployeID:  " + receiverID;
       }
 }
 
