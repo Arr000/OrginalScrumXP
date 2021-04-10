@@ -98,8 +98,41 @@ public class MeetingDB implements IMeetingDal{
         }
         
     }
+
+    @Override
+    public ArrayList<Meeting> getMeetingByDate(String date) {
+       
+        try {
+            DatabasAcess.Connect();
+            ArrayList<Meeting> meetings = new ArrayList<>();
+            
+            var selectQuery = "SELECT * FROM MEETING WHERE DATUM = " + DatabasAcess.MakeDBString(date) + " AND APPROVED = " + DatabasAcess.MakeDBString("J");
+            var results =DatabasAcess.getidb().fetchRows(selectQuery);
+            
+            if(results != null)
+            {
+                for(var result: results)
+                {
+                    var id = Integer.parseInt(result.get("ID"));
+                    var plats = result.get("PLATS");
+                    var tid = result.get("TID");
+                    var datum = result.get("DATUM");
+                    var receiverID = Integer.parseInt(result.get("RECEIVERID"));
+                    var senderID = Integer.parseInt(result.get("SENDERID"));
+                    
+                    var meeting = new Meeting(id, plats, tid, datum, receiverID,senderID);
+                    
+                    meetings.add(meeting);
+                    
+                }
+                return meetings;
+            }
+        
+        } catch (InfException ex) {
+            Logger.getLogger(MeetingDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
-
-
   
 
