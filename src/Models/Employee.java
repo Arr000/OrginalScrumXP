@@ -60,9 +60,18 @@ public class Employee {
         return username + " " + firstname;
     }
     
+        public String getFullname()
+    {
+        return firstname + " " + lastname;
+    }
+    
     public String getEmail()
     {
         return email;
     }
     
+    public String getIdAndFirstname()
+    {
+        return String.valueOf(id) + " " + firstname;
+    }
 }

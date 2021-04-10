@@ -5,7 +5,10 @@
  */
 package Models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import static meetingmanagergui.CalenderMeeting.datumMote;
 
 /**
  *
@@ -18,5 +21,7 @@ public interface IPostDal {
     public int getMaxIdResearchPost();
     
     public ArrayList<ForskningsInlagg> getAllResearchPosts();
+    
+    
     
 }
