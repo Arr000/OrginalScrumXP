@@ -126,7 +126,7 @@ public class EmployeeDB implements IEmployeeDAL{
 
     @Override
     public Employee checkLogin(String userName, String password) {
-          try {
+          try { 
               DatabasAcess.Connect();
               
               var loginQuery = "SELECT * FROM EMPLOYEE WHERE ANVANDARNAMN = " + DatabasAcess.MakeDBString(userName) + " AND LOSENORD = " + DatabasAcess.MakeDBString(password);

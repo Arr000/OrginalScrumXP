@@ -126,4 +126,12 @@ public class BloggService implements IMeeting, IEmployee, IPost{
         return allResearchPosts;
     }
 
+    @Override
+    public ArrayList<Meeting> getMeetingbyDate(String date) {
+      var meetings = _meetingdb.getMeetingByDate(date);
+      return meetings;
+    }
+
+  
+
 }
