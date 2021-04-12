@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author nene5
  */
-public class BloggService implements IMeeting, IEmployee, IPost {
+public class BloggService implements IMeeting, IEmployee, IPost{
  
     private IMeetingDal _meetingdb;
     private IEmployeeDAL _employeedb;
