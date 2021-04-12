@@ -6,8 +6,11 @@
 package meetingmanagergui;
 
 import BloggManager.BloggService;
+import DB.EmployeeDB;
 import DB.MeetingDB;
+import Models.IEmployee;
 import Models.IMeeting;
+import Models.IMeetingDal;
 import Models.Meeting;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -20,6 +23,7 @@ public class AllMeetingsGUI extends javax.swing.JFrame {
 
     private ArrayList<Meeting> listaMeeting = new ArrayList<>();
     private IMeeting _meeetingService = new BloggService(new MeetingDB());
+    
    
     public AllMeetingsGUI() {
         initComponents();
@@ -56,7 +60,7 @@ public class AllMeetingsGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listMeetings = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jScrollPane1.setViewportView(listMeetings);
 
@@ -65,16 +69,16 @@ public class AllMeetingsGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 646, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(97, 97, 97)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -119,4 +123,8 @@ public class AllMeetingsGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listMeetings;
     // End of variables declaration//GEN-END:variables
+
+    private IMeetingDal EmployeeDB() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
