@@ -19,5 +19,11 @@ public interface IPost {
     
     public ArrayList<ForskningsInlagg> getAllResearchPosts();
     
+    public void addInformalPost(int id, String rubrik, String inlagg, String username, String bild);
+    
+    public int getMaxIDInformalPost();
+    
+    
+    
     
 }

@@ -22,6 +22,9 @@ public interface IPostDal {
     
     public ArrayList<ForskningsInlagg> getAllResearchPosts();
     
+    public void saveInformalPost(int id, String rubrik, String inlagg, String username, String bild);
+    
+    public int getMaxIDInformalPost();
     
     
 }

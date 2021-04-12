@@ -5,6 +5,7 @@
  */
 package BloggManager;
 
+import DB.DatabasAcess;
 import Models.Employee;
 import Models.ForskningsInlagg;
 import Models.IEmployee;
@@ -21,7 +22,7 @@ import javax.swing.JOptionPane;
  *
  * @author nene5
  */
-public class BloggService implements IMeeting, IEmployee, IPost{
+public class BloggService implements IMeeting, IEmployee, IPost {
  
     private IMeetingDal _meetingdb;
     private IEmployeeDAL _employeedb;
@@ -131,6 +132,20 @@ public class BloggService implements IMeeting, IEmployee, IPost{
       var meetings = _meetingdb.getMeetingByDate(date);
       return meetings;
     }
+
+    @Override
+    public void addInformalPost(int id, String rubrik, String inlagg, String username, String bild) {
+       
+        _postdb.saveInformalPost(id, rubrik, inlagg, username, bild);
+    }
+
+    @Override
+    public int getMaxIDInformalPost(){
+      var maxid = _postdb.getMaxIDInformalPost();
+      return maxid + 1;
+    }
+    
+    
 
   
 
