@@ -52,7 +52,7 @@ public class PulishEducationPost extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Publish Education Post");
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Max 500 ord");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
