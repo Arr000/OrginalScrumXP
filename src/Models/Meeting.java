@@ -6,6 +6,7 @@
 package Models;
 
 import java.util.Date;
+import org.firebirdsql.jdbc.FBEscapedFunctionHelper;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Meeting {
     private int receiverID;
     private int senderID;
     private String approved;
+
     
     
     
@@ -84,7 +86,8 @@ public class Meeting {
       
       public String getAllInfo()
       {
-          return "ID : " +id + "     Plats: " + plats + "     Tid: " + tid + "   EmployeID:  " + receiverID;
+        
+          return "MötesID : " +id + " är bokat på plats : " + plats + " Tid: " + tid + " med Anställd:  " + receiverID;
       }
 }
 

@@ -9,21 +9,19 @@ import BloggManager.BloggService;
 import DB.EmployeeDB;
 import DB.PostDB;
 import Models.Employee;
-import Models.ForskningsInlagg;
 import Models.IEmployee;
 import Models.IPost;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
-import org.firebirdsql.jdbc.FBEscapedFunctionHelper;
 
 /**
  *
  * @author nene5
  */
-public class PublishResearchPostPage extends javax.swing.JFrame {
+public class PublishFormalPost extends javax.swing.JFrame {
 
-    // i fälten har jag en employee, som är som en behållare. där vi lägger in objektet employee i denna från konstruktorn
-    // sedan har vi två services, där ena använder sig av interface Iemployee, och den andra från IPost
-    // de har nu betendena från interface och vi kan anropa dessa i våra metoder
     private Employee employee;
     private IEmployee _employeService = new BloggService(new EmployeeDB());
     private IPost _postService = new BloggService(new PostDB());
@@ -31,11 +29,11 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
     /**
      * Creates new form InformalPostPage
      */
-    public PublishResearchPostPage() {
+    public PublishFormalPost() {
         initComponents();
     }
      
-     public PublishResearchPostPage(Employee e) {
+     public PublishFormalPost(Employee e) {
         initComponents();
         this.employee = e;
         
@@ -52,6 +50,19 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jDialog1 = new javax.swing.JDialog();
+        jDialog2 = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtPost = new javax.swing.JTextArea();
@@ -59,11 +70,65 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnSend = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        File = new javax.swing.JMenu();
+        Open = new javax.swing.JMenuItem();
+        Exit = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem4.setText("jMenuItem4");
+
+        jMenuItem5.setText("jMenuItem5");
+
+        jMenuItem6.setText("jMenuItem6");
+
+        jMenuItem7.setText("jMenuItem7");
+
+        jMenuItem8.setText("jMenuItem8");
+
+        jMenuItem9.setText("jMenuItem9");
+
+        jMenuItem10.setText("jMenuItem10");
+
+        jFileChooser1.setDialogTitle("Choose File");
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
+        jDialog2.getContentPane().setLayout(jDialog2Layout);
+        jDialog2Layout.setHorizontalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog2Layout.setVerticalGroup(
+            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Dela info som rör forskning ");
+        jLabel1.setText("Dela formellt inlägg");
 
         txtPost.setColumns(20);
         txtPost.setRows(5);
@@ -81,6 +146,36 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
 
         jLabel3.setText("Max 500 ord");
 
+        File.setText("File");
+        File.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FileActionPerformed(evt);
+            }
+        });
+
+        Open.setText("Open");
+        Open.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenActionPerformed(evt);
+            }
+        });
+        File.add(Open);
+
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        File.add(Exit);
+
+        jMenuBar1.add(File);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,18 +191,18 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 662, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(258, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(257, 257, 257))
+                .addGap(277, 277, 277))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(4, 4, 4)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,10 +217,7 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-// hämtar värdena från gränssnittet och lägger in dom i lokala variablar
-    // har en validering om inläggets längd är över 500 så ska vi få felmeddelande och sedan stoppar vi metoden med en return
-    // så den inte fortsätter med resten av funktionerna
-    // är den mindre än 500 ord så ropar vi på vår metod och lägger in variablerna.
+
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
         
         var maxid = _postService.getMaxIdResearchPost();
@@ -136,7 +228,6 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
         if(inlagg.length() > 500)
         {
             JOptionPane.showMessageDialog(null, "Max 500 ord!");
-            return;
         }
         
         _postService.addResearchPost(maxid, rubrik, inlagg, username);
@@ -145,6 +236,35 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnSendActionPerformed
+
+    private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
+               int returnVal = jFileChooser1.showOpenDialog(this);
+    if (returnVal == jFileChooser1.APPROVE_OPTION) {
+        File file = jFileChooser1.getSelectedFile();
+        try {
+          
+          txtPost.read( new FileReader( file.getAbsolutePath() ), null );
+        }
+        catch (IOException ex) 
+        {
+          System.out.println("problem accessing file"+file.getAbsolutePath());
+        }
+    } else {
+        System.out.println("File access cancelled by user.");
+    }
+    }//GEN-LAST:event_OpenActionPerformed
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
+
+    private void FileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FileActionPerformed
+
+    }//GEN-LAST:event_FileActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,14 +283,22 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PublishResearchPostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PublishFormalPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PublishResearchPostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PublishFormalPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PublishResearchPostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PublishFormalPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PublishResearchPostPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PublishFormalPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -183,16 +311,34 @@ public class PublishResearchPostPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PublishResearchPostPage().setVisible(true);
+                new PublishFormalPost().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Exit;
+    private javax.swing.JMenu File;
+    private javax.swing.JMenuItem Open;
     private javax.swing.JButton btnSend;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JDialog jDialog2;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtPost;
     private javax.swing.JTextField txtRubrik;
