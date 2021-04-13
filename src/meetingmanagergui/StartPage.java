@@ -26,6 +26,8 @@ public class StartPage extends javax.swing.JFrame {
         initComponents();
     }
     
+    
+    //här skickar vi in en employee från vår loginpage för att veta vilken användare som är inloggad
      public StartPage(Employee e) {
         initComponents();
         this.employe = e;
@@ -114,27 +116,28 @@ public class StartPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-        // egentligen ska employee kastas i denna konstruktorn från loginpage.. 
-        // detta är bara hårdkodat för att se hur det fungerar
+     
        
         var newpage = new MyMeetings(employe);
         newpage.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    // hämtar en employee via username
+    //lägger sedan in objektet employee i klassen bookmeeting som tar emot ett objekt av typen employee
+    //jag sätter den nya klassen som visible så den rutan syns
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // egentligen ska employee kastas i denna konstruktorn från loginpage.. 
-        // detta är bara hårdkodat för att se hur det fungerar
+        
         var myEmployee = _employeService.getEmployeebyUsername(employe.getUsername());
         var newpage = new BookMeeting(myEmployee);
         newpage.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
+    // samma princip som ovanstående kod, JButton2"
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         var publishresearchpost = new PublishResearchPostPage(employe);
         publishresearchpost.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+ // samma princip som ovanstående dock har den nya klassen en tom konstruktor, då det är en allmän almanacka.
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
      var calendermeeting = new CalenderMeeting();
      calendermeeting.setVisible(true);
