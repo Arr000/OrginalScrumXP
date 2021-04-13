@@ -132,6 +132,9 @@ public class BloggService implements IMeeting, IEmployee, IPost{
       return meetings;
     }
 
-  
+    @Override
+    public void deleteResearchPost(String rubrik){
+        _postdb.deleteResearchPost(rubrik);
+    }
 
 }
