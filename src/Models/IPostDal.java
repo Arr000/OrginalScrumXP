@@ -22,6 +22,6 @@ public interface IPostDal {
     
     public ArrayList<ForskningsInlagg> getAllResearchPosts();
     
-    
+    public void deleteResearchPost(String rubrik);
     
 }

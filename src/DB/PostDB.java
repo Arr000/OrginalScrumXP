@@ -79,4 +79,16 @@ public class PostDB implements IPostDal{
         }
             return null;
     }   
+    
+    @Override
+    public void deleteResearchPost(String rubrik){
+        try{
+            DatabasAcess.Connect();
+            var dbidb = DatabasAcess.getidb();
+            dbidb.delete("DELETE FROM FORSKNINGSINLAGG WHERE RUBRIK = '" + rubrik + "'" );
+            
+        } catch (InfException ex){
+        Logger.getLogger(PostDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
