@@ -5,6 +5,7 @@
  */
 package BloggManager;
 
+import DB.DatabasAcess;
 import Models.Employee;
 import Models.ForskningsInlagg;
 import Models.IEmployee;
@@ -133,8 +134,19 @@ public class BloggService implements IMeeting, IEmployee, IPost{
     }
 
     @Override
-    public void deleteResearchPost(String rubrik){
-        _postdb.deleteResearchPost(rubrik);
+    public void addInformalPost(int id, String rubrik, String inlagg, String username, String bild) {
+       
+        _postdb.saveInformalPost(id, rubrik, inlagg, username, bild);
     }
+
+    @Override
+    public int getMaxIDInformalPost(){
+      var maxid = _postdb.getMaxIDInformalPost();
+      return maxid + 1;
+    }
+    
+    
+
+  
 
 }

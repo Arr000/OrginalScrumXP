@@ -79,16 +79,29 @@ public class PostDB implements IPostDal{
         }
             return null;
     }   
-    
+
     @Override
-    public void deleteResearchPost(String rubrik){
-        try{
+    public void saveInformalPost(int id, String rubrik, String inlagg, String username, String bild) {
+        try {
             DatabasAcess.Connect();
-            var dbidb = DatabasAcess.getidb();
-            dbidb.delete("DELETE FROM FORSKNINGSINLAGG WHERE RUBRIK = '" + rubrik + "'" );
-            
-        } catch (InfException ex){
-        Logger.getLogger(PostDB.class.getName()).log(Level.SEVERE, null, ex);
+            var informalpostquery = "INSERT INTO INFORMELLAINLAGG (ID,RUBRIK,INLAGG,USERNAME,BILD) VALUES( "+ id + ","+ DatabasAcess.MakeDBString(rubrik)+","+DatabasAcess.MakeDBString(inlagg)+","+DatabasAcess.MakeDBString(username)+","+DatabasAcess.MakeDBString(bild)+")";
+            DatabasAcess.getidb().insert(informalpostquery);
+        } catch (InfException ex) {
+            Logger.getLogger(PostDB.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public int getMaxIDInformalPost() {
+        try {
+            DatabasAcess.Connect();
+            var getMaxIdQuery = "SELECT MAX(ID) FROM INFORMELLAINLAGG";
+            var result = DatabasAcess.getidb().fetchSingle(getMaxIdQuery);
+            
+            return Integer.parseInt(result);
+          
+        } catch (InfException ex) {
+            Logger.getLogger(MeetingDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
     }
 }

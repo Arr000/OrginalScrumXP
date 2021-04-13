@@ -26,8 +26,6 @@ public class StartPage extends javax.swing.JFrame {
         initComponents();
     }
     
-    
-    //här skickar vi in en employee från vår loginpage för att veta vilken användare som är inloggad
      public StartPage(Employee e) {
         initComponents();
         this.employe = e;
@@ -44,10 +42,11 @@ public class StartPage extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        informalPostButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Show my meetings");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -63,6 +62,8 @@ public class StartPage extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Manage your meetings here");
+
         jButton3.setText("Publish research post");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,14 +71,10 @@ public class StartPage extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setBackground(new java.awt.Color(0, 0, 0));
-        jButton4.setFont(new java.awt.Font("Impact", 0, 10)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\nene5\\OneDrive\\Bilder\\NetBeansBilder\\almanacka.PNG")); // NOI18N
-        jButton4.setText("Meeting");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        informalPostButton.setText("Publish informal post");
+        informalPostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                informalPostButtonActionPerformed(evt);
             }
         });
 
@@ -87,28 +84,28 @@ public class StartPage extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(275, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(informalPostButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(informalPostButton)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,32 +113,33 @@ public class StartPage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        
-     
+        // egentligen ska employee kastas i denna konstruktorn från loginpage.. 
+        // detta är bara hårdkodat för att se hur det fungerar
        
         var newpage = new MyMeetings(employe);
         newpage.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
-    // hämtar en employee via username
-    //lägger sedan in objektet employee i klassen bookmeeting som tar emot ett objekt av typen employee
-    //jag sätter den nya klassen som visible så den rutan syns
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+        // egentligen ska employee kastas i denna konstruktorn från loginpage.. 
+        // detta är bara hårdkodat för att se hur det fungerar
         var myEmployee = _employeService.getEmployeebyUsername(employe.getUsername());
         var newpage = new BookMeeting(myEmployee);
         newpage.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
-    
-    // samma princip som ovanstående kod, JButton2"
+
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         var publishresearchpost = new PublishResearchPostPage(employe);
         publishresearchpost.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
- // samma princip som ovanstående dock har den nya klassen en tom konstruktor, då det är en allmän almanacka.
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-     var calendermeeting = new CalenderMeeting();
-     calendermeeting.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void informalPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_informalPostButtonActionPerformed
+        // TODO add your handling code here:
+        
+        var publishInformalPost = new PublishInformalPost();
+        publishInformalPost.setVisible(true);
+    }//GEN-LAST:event_informalPostButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,10 +178,11 @@ public class StartPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton informalPostButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
 }
