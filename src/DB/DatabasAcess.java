@@ -17,7 +17,7 @@ public class DatabasAcess{
         {
             if(idb == null)
             {
-                idb = new InfDB("C:\\Users\\gabri\\OneDrive\\Skrivbord\\grupp9projekt\\Grupp9BloggFunktion\\drivrutin\\bloggdb.fdb");  
+                idb = new InfDB("C:\\db1\\ProjektArbete2021\\drivrutin\\BLOGGDB.FDB");  
             }
         }
         catch(InfException ex)
